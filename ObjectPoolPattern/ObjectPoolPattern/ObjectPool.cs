@@ -6,10 +6,10 @@ namespace ObjectPoolPattern
 {
     public class ObjectPool<T> : IDisposable, IHandle<RepoolResourceMessage<T>> where T : IPoolableResource
     {
-        private ConcurrentBag<T> pooledObjects;
-        private Func<T> objectGenerator;
+        private readonly ConcurrentBag<T> pooledObjects;
+        private readonly Func<T> objectGenerator;
         private bool isDisposed;
-        private EventAggregator eventAggregator;
+        private readonly EventAggregator eventAggregator;
 
         public ObjectPool(Func<T> objectGenerator)
         {
